@@ -2,161 +2,191 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HeartSafe – Date Fearlessly</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>HeartSafe – Find Your Match</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --r:#E91E8C;--r2:#FF4D9E;--g:#00E5B0;
-  --dk:#0D0820;--dk2:#160E2E;--card:#1A1135;
-  --bd:rgba(255,255,255,0.08);--txt:rgba(255,255,255,0.7);
-}
-body{font-family:'Outfit',sans-serif;background:var(--dk);color:#fff;min-height:100vh;overflow-x:hidden}
-/* BG */
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{--r:#E91E8C;--r2:#FF4D9E;--g:#00E5B0;--dk:#0D0820;--dk2:#110A28;--card:#1A1135}
+html,body{height:100%;width:100%;font-family:'Outfit',sans-serif;background:var(--dk);color:#fff;overflow-x:hidden}
+body{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:1rem}
 .bg{position:fixed;inset:0;z-index:0;overflow:hidden}
-.blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.25}
-.b1{width:600px;height:600px;background:var(--r);top:-200px;left:-200px;animation:float1 8s ease-in-out infinite}
-.b2{width:500px;height:500px;background:#7B2FFF;bottom:-200px;right:-200px;animation:float2 10s ease-in-out infinite}
-.b3{width:300px;height:300px;background:var(--g);top:50%;left:50%;animation:float3 6s ease-in-out infinite}
-@keyframes float1{0%,100%{transform:translate(0,0)}50%{transform:translate(80px,60px)}}
-@keyframes float2{0%,100%{transform:translate(0,0)}50%{transform:translate(-60px,-80px)}}
-@keyframes float3{0%,100%{transform:translate(-50%,-50%)}50%{transform:translate(-40%,-60%)}}
-/* Layout */
-.wrap{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column}
-/* Nav */
-nav{display:flex;align-items:center;justify-content:space-between;padding:1.5rem 2rem;max-width:1400px;margin:0 auto;width:100%}
-.logo{font-family:'Playfair Display',serif;font-size:1.8rem;background:linear-gradient(135deg,var(--r),var(--r2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.nav-badge{display:flex;gap:.5rem}
-.nb{background:rgba(255,255,255,.08);border:1px solid var(--bd);padding:.3rem .8rem;border-radius:100px;font-size:.78rem;color:var(--txt)}
-/* Hero */
-.hero{flex:1;display:flex;align-items:center;justify-content:center;padding:2rem;gap:4rem;max-width:1400px;margin:0 auto;width:100%;flex-wrap:wrap}
-.hero-left{flex:1;min-width:280px;max-width:560px}
-.hero-tag{display:inline-flex;align-items:center;gap:.6rem;background:rgba(233,30,140,.12);border:1px solid rgba(233,30,140,.3);padding:.4rem 1rem;border-radius:100px;font-size:.82rem;color:var(--r2);margin-bottom:1.5rem}
-.hero-tag span{animation:blink 1s infinite}
-.h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,3.8rem);line-height:1.15;margin-bottom:1.2rem}
-.h1 em{font-style:italic;color:var(--r2)}
-.hero-desc{color:var(--txt);font-size:1.05rem;line-height:1.7;margin-bottom:2rem}
-.features{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:2rem}
-.feat{display:flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.06);border:1px solid var(--bd);padding:.4rem .8rem;border-radius:8px;font-size:.82rem}
-/* Auth Card */
-.hero-right{width:100%;max-width:420px}
-.auth-card{background:rgba(255,255,255,.04);backdrop-filter:blur(24px);border:1px solid var(--bd);border-radius:24px;padding:2rem;box-shadow:0 20px 60px rgba(0,0,0,.4)}
-.tabs{display:flex;background:rgba(255,255,255,.05);border-radius:12px;padding:4px;margin-bottom:1.5rem;gap:4px}
-.tab{flex:1;padding:.65rem;text-align:center;cursor:pointer;border-radius:9px;font-size:.9rem;transition:all .2s;color:var(--txt);font-weight:500}
-.tab.active{background:linear-gradient(135deg,var(--r),var(--r2));color:#fff}
-.form-group{margin-bottom:.9rem}
-.form-group label{display:block;font-size:.76rem;color:var(--txt);margin-bottom:.35rem;text-transform:uppercase;letter-spacing:1px}
-.form-group input,.form-group select{width:100%;background:rgba(255,255,255,.06);border:1px solid var(--bd);border-radius:10px;padding:.75rem 1rem;color:#fff;font-size:.92rem;font-family:'Outfit',sans-serif;outline:none;transition:border-color .2s}
-.form-group input:focus,.form-group select:focus{border-color:var(--r)}
-.form-group select option{background:#1A1135}
-.row2{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
-.btn{width:100%;padding:1rem;border-radius:12px;border:none;cursor:pointer;font-family:'Outfit',sans-serif;font-size:1rem;font-weight:600;background:linear-gradient(135deg,var(--r),var(--r2));color:#fff;transition:transform .2s,box-shadow .2s;margin-top:.3rem}
-.btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(233,30,140,.4)}
-.err{background:rgba(233,30,140,.12);border:1px solid rgba(233,30,140,.3);border-radius:8px;padding:.7rem 1rem;font-size:.84rem;color:#ff8ac4;margin-bottom:.8rem;display:none}
-.hidden{display:none!important}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-/* Responsive */
-@media(max-width:768px){
-  nav{padding:1rem 1.2rem}
-  .hero{flex-direction:column;gap:2rem;padding:1.2rem}
-  .hero-left{max-width:100%}
-  .hero-right{max-width:100%}
-  .h1{font-size:2.2rem}
-}
+.bg-grad{position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%, rgba(233,30,140,0.15) 0%, transparent 60%),radial-gradient(ellipse at 80% 20%, rgba(79,195,247,0.1) 0%, transparent 50%),linear-gradient(135deg,#0D0820,#110A28,#0D0820)}
+.float{position:absolute;border-radius:50%;opacity:.08;animation:float 8s ease-in-out infinite}
+.f1{width:300px;height:300px;background:var(--r);top:-100px;right:-80px;animation-delay:0s}
+.f2{width:200px;height:200px;background:#4FC3F7;bottom:-60px;left:-60px;animation-delay:3s}
+.f3{width:150px;height:150px;background:var(--g);top:40%;left:10%;animation-delay:1.5s}
+@keyframes float{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-20px) scale(1.05)}}
+.container{position:relative;z-index:1;width:100%;max-width:420px}
+.logo-section{text-align:center;margin-bottom:2rem}
+.logo{font-family:'Playfair Display',serif;font-size:2.5rem;background:linear-gradient(135deg,var(--r),var(--r2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-style:italic}
+.tagline{color:rgba(255,255,255,0.5);font-size:.9rem;margin-top:.3rem}
+.card{background:rgba(26,17,53,0.9);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:2rem;box-shadow:0 20px 60px rgba(0,0,0,0.4)}
+.tabs{display:flex;background:rgba(255,255,255,0.06);border-radius:12px;padding:4px;margin-bottom:1.5rem}
+.tab{flex:1;padding:.6rem;text-align:center;border-radius:9px;cursor:pointer;font-size:.9rem;font-weight:600;transition:all .2s;color:rgba(255,255,255,0.5)}
+.tab.active{background:linear-gradient(135deg,var(--r),var(--r2));color:#fff;box-shadow:0 4px 15px rgba(233,30,140,0.4)}
+.form-screen{display:none}
+.form-screen.active{display:block}
+.form-group{margin-bottom:1rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+label{display:block;font-size:.8rem;font-weight:600;color:rgba(255,255,255,0.6);margin-bottom:.4rem;text-transform:uppercase;letter-spacing:.5px}
+input,select{width:100%;padding:.75rem 1rem;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:12px;color:#fff;font-size:.9rem;font-family:'Outfit',sans-serif;transition:all .2s;outline:none;-webkit-appearance:none}
+input:focus,select:focus{border-color:var(--r);background:rgba(233,30,140,0.08);box-shadow:0 0 0 3px rgba(233,30,140,0.15)}
+input::placeholder{color:rgba(255,255,255,0.3)}
+select option{background:#1A1135;color:#fff}
+.btn{width:100%;padding:.9rem;background:linear-gradient(135deg,var(--r),var(--r2));border:none;border-radius:12px;color:#fff;font-size:1rem;font-weight:700;font-family:'Outfit',sans-serif;cursor:pointer;transition:all .2s;margin-top:.5rem}
+.btn:hover{transform:translateY(-1px);box-shadow:0 8px 25px rgba(233,30,140,0.5)}
+.btn:active{transform:translateY(0)}
+.privacy-toggle{display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,0.05);border-radius:12px;padding:.8rem 1rem;margin-top:.5rem}
+.toggle-label{font-size:.88rem;color:rgba(255,255,255,0.7)}
+.toggle{position:relative;width:44px;height:24px}
+.toggle input{opacity:0;width:0;height:0}
+.slider{position:absolute;inset:0;background:rgba(255,255,255,0.2);border-radius:24px;cursor:pointer;transition:.3s}
+.slider:before{content:'';position:absolute;width:18px;height:18px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.3s}
+input:checked+.slider{background:linear-gradient(135deg,var(--r),var(--r2))}
+input:checked+.slider:before{transform:translateX(20px)}
+.err{background:rgba(255,80,80,0.15);border:1px solid rgba(255,80,80,0.3);border-radius:10px;padding:.6rem 1rem;font-size:.85rem;color:#ff8080;margin-top:.8rem;display:none}
+.err.show{display:block}
+.features{display:flex;gap:.5rem;justify-content:center;margin-top:1.5rem;flex-wrap:wrap}
+.feat{font-size:.75rem;color:rgba(255,255,255,0.4);display:flex;align-items:center;gap:.3rem}
+.feat span{font-size:1rem}
 </style>
 </head>
 <body>
-<div class="bg">
-  <div class="blob b1"></div>
-  <div class="blob b2"></div>
-  <div class="blob b3"></div>
-</div>
-<div class="wrap">
-  <nav>
-    <div class="logo">💗 HeartSafe</div>
-    <div class="nav-badge">
-      <div class="nb">🤖 50 AI Profiles</div>
-      <div class="nb">🛡️ Safety First</div>
+<div class="bg"><div class="bg-grad"></div><div class="float f1"></div><div class="float f2"></div><div class="float f3"></div></div>
+<div class="container">
+  <div class="logo-section">
+    <div class="logo">HeartSafe ♥</div>
+    <div class="tagline">Find love safely, connect meaningfully</div>
+  </div>
+  <div class="card">
+    <div class="tabs">
+      <div class="tab active" onclick="switchTab('login')">Sign In</div>
+      <div class="tab" onclick="switchTab('register')">Join Free</div>
     </div>
-  </nav>
-  <div class="hero">
-    <div class="hero-left">
-      <div class="hero-tag"><span>●</span> 50 AI Profiles Active Now</div>
-      <h1 class="h1">Date Fearlessly,<br><em>Stay Protected</em></h1>
-      <p class="hero-desc">India's first dating app with built-in female safety — real-time SOS alerts, live GPS tracking to Telegram, and AI companions to keep you company.</p>
-      <div class="features">
-        <div class="feat">🆘 SOS Alerts</div>
-        <div class="feat">📍 Live GPS → Telegram</div>
-        <div class="feat">🤖 50 AI Bots</div>
-        <div class="feat">🗺️ Nearby Map</div>
-        <div class="feat">📱 Multi-Channel</div>
-        <div class="feat">🔴 Live Streaming</div>
-        <div class="feat">📸 Stories</div>
-        <div class="feat">🛡️ Block & Report</div>
+
+    <!-- LOGIN -->
+    <div class="form-screen active" id="login-form">
+      <div class="form-group">
+        <label>Email or Username</label>
+        <input type="text" id="l-identifier" placeholder="Enter email or username">
       </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="l-password" placeholder="Your password">
+      </div>
+      <button class="btn" onclick="doLogin()">Sign In ✨</button>
+      <div class="err" id="login-err"></div>
     </div>
-    <div class="hero-right">
-      <div class="auth-card">
-        <div class="tabs">
-          <div class="tab active" onclick="showTab('login')">Sign In</div>
-          <div class="tab" onclick="showTab('reg')">Create Account</div>
+
+    <!-- REGISTER -->
+    <div class="form-screen" id="register-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="r-name" placeholder="Your name">
         </div>
-        <!-- Login -->
-        <div id="loginForm">
-          <div class="err" id="loginErr"></div>
-          <div class="form-group"><label>Email or Username</label><input id="lId" placeholder="your@email.com" autocomplete="username"></div>
-          <div class="form-group"><label>Password</label><input id="lPw" type="password" placeholder="••••••••" autocomplete="current-password"></div>
-          <button class="btn" onclick="doLogin()">Sign In →</button>
-        </div>
-        <!-- Register -->
-        <div id="regForm" class="hidden">
-          <div class="err" id="regErr"></div>
-          <div class="row2">
-            <div class="form-group"><label>Full Name</label><input id="rName" placeholder="Your name"></div>
-            <div class="form-group"><label>Age</label><input id="rAge" type="number" min="18" max="80" placeholder="24"></div>
-          </div>
-          <div class="form-group"><label>Username</label><input id="rUser" placeholder="username"></div>
-          <div class="form-group"><label>Email</label><input id="rEmail" type="email" placeholder="your@email.com"></div>
-          <div class="form-group"><label>Password</label><input id="rPw" type="password" placeholder="Min 6 characters"></div>
-          <div class="row2">
-            <div class="form-group"><label>I am</label>
-              <select id="rGender"><option value="female">Woman</option><option value="male">Man</option><option value="nonbinary">Non-binary</option></select>
-            </div>
-            <div class="form-group"><label>Looking for</label>
-              <select id="rLook"><option value="male">Men</option><option value="female">Women</option><option value="both">Everyone</option></select>
-            </div>
-          </div>
-          <button class="btn" onclick="doRegister()">Create Account →</button>
+        <div class="form-group">
+          <label>Username</label>
+          <input type="text" id="r-username" placeholder="@username">
         </div>
       </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="r-email" placeholder="your@email.com">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="r-password" placeholder="Min 6 chars">
+        </div>
+        <div class="form-group">
+          <label>Age</label>
+          <input type="number" id="r-age" placeholder="18+" min="18" max="80">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Gender</label>
+          <select id="r-gender">
+            <option value="female">Female</option>
+            <option value="male">Male</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Looking For</label>
+          <select id="r-looking">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="any">Anyone</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Bio (optional)</label>
+        <input type="text" id="r-bio" placeholder="Tell something about yourself">
+      </div>
+      <div class="privacy-toggle">
+        <div>
+          <div class="toggle-label">🔒 Private Account</div>
+          <div style="font-size:.75rem;color:rgba(255,255,255,0.35);margin-top:2px">Only followers see your posts</div>
+        </div>
+        <label class="toggle"><input type="checkbox" id="r-private"><span class="slider"></span></label>
+      </div>
+      <button class="btn" onclick="doRegister()" style="margin-top:1rem">Create Account 🚀</button>
+      <div class="err" id="reg-err"></div>
     </div>
+  </div>
+  <div class="features">
+    <div class="feat"><span>🛡️</span> Safe & Secure</div>
+    <div class="feat"><span>🤖</span> AI Chat Bots</div>
+    <div class="feat"><span>📸</span> Stories & Feed</div>
+    <div class="feat"><span>🔍</span> Smart Search</div>
   </div>
 </div>
 <script>
-function showTab(t){
-  document.querySelectorAll('.tab').forEach((el,i)=>el.classList.toggle('active',(t==='login'&&i===0)||(t==='reg'&&i===1)));
-  document.getElementById('loginForm').classList.toggle('hidden',t!=='login');
-  document.getElementById('regForm').classList.toggle('hidden',t!=='reg');
+function switchTab(t){
+  document.querySelectorAll('.tab').forEach((el,i)=>el.classList.toggle('active',i===(t==='login'?0:1)));
+  document.querySelectorAll('.form-screen').forEach((el,i)=>el.classList.toggle('active',i===(t==='login'?0:1)));
 }
-function err(id,msg){const e=document.getElementById(id);e.textContent=msg;e.style.display='block';setTimeout(()=>e.style.display='none',4000)}
 async function doLogin(){
-  const id=document.getElementById('lId').value,pw=document.getElementById('lPw').value;
-  if(!id||!pw)return err('loginErr','Please fill all fields');
-  const r=await fetch('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({identifier:id,password:pw})});
-  const d=await r.json();
-  if(d.success)location.href='/app';else err('loginErr',d.error||'Login failed');
+  const id=document.getElementById('l-identifier').value.trim();
+  const pw=document.getElementById('l-password').value;
+  const err=document.getElementById('login-err');
+  err.classList.remove('show');
+  if(!id||!pw){err.textContent='Please fill all fields';err.classList.add('show');return}
+  try{
+    const r=await fetch('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({identifier:id,password:pw})});
+    const d=await r.json();
+    if(d.success){window.location='/app'}
+    else{err.textContent=d.error||'Login failed';err.classList.add('show')}
+  }catch(e){err.textContent='Connection error';err.classList.add('show')}
 }
 async function doRegister(){
-  const b={name:document.getElementById('rName').value,age:parseInt(document.getElementById('rAge').value)||18,username:document.getElementById('rUser').value,email:document.getElementById('rEmail').value,password:document.getElementById('rPw').value,gender:document.getElementById('rGender').value,looking_for:document.getElementById('rLook').value};
-  if(!b.name||!b.username||!b.email||!b.password)return err('regErr','Please fill all fields');
-  if(b.password.length<6)return err('regErr','Password must be 6+ characters');
-  const r=await fetch('/api/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b)});
-  const d=await r.json();
-  if(d.success)location.href='/app';else err('regErr',d.error||'Registration failed');
+  const n=document.getElementById('r-name').value.trim();
+  const u=document.getElementById('r-username').value.trim();
+  const e=document.getElementById('r-email').value.trim();
+  const p=document.getElementById('r-password').value;
+  const a=document.getElementById('r-age').value;
+  const g=document.getElementById('r-gender').value;
+  const l=document.getElementById('r-looking').value;
+  const b=document.getElementById('r-bio').value.trim();
+  const priv=document.getElementById('r-private').checked;
+  const err=document.getElementById('reg-err');
+  err.classList.remove('show');
+  if(!n||!u||!e||!p||!a){err.textContent='Please fill all required fields';err.classList.add('show');return}
+  if(p.length<6){err.textContent='Password must be at least 6 characters';err.classList.add('show');return}
+  if(parseInt(a)<18){err.textContent='You must be 18 or older';err.classList.add('show');return}
+  try{
+    const r=await fetch('/api/register',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({name:n,username:u,email:e,password:p,age:parseInt(a),gender:g,looking_for:l,bio:b,is_private:priv})});
+    const d=await r.json();
+    if(d.success){window.location='/app'}
+    else{err.textContent=d.error||'Registration failed';err.classList.add('show')}
+  }catch(e){err.textContent='Connection error';err.classList.add('show')}
 }
-document.addEventListener('keydown',e=>{if(e.key==='Enter'){document.getElementById('loginForm').classList.contains('hidden')?doRegister():doLogin()}});
+document.addEventListener('keydown',e=>{if(e.key==='Enter'){const form=document.querySelector('.form-screen.active');if(form.id==='login-form')doLogin();else doRegister()}});
 </script>
 </body>
 </html>
