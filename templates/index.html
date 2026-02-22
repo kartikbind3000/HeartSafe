@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HeartSafe – Date Fearlessly</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --r:#E91E8C;--r2:#FF4D9E;--g:#00E5B0;
+  --dk:#0D0820;--dk2:#160E2E;--card:#1A1135;
+  --bd:rgba(255,255,255,0.08);--txt:rgba(255,255,255,0.7);
+}
+body{font-family:'Outfit',sans-serif;background:var(--dk);color:#fff;min-height:100vh;overflow-x:hidden}
+/* BG */
+.bg{position:fixed;inset:0;z-index:0;overflow:hidden}
+.blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.25}
+.b1{width:600px;height:600px;background:var(--r);top:-200px;left:-200px;animation:float1 8s ease-in-out infinite}
+.b2{width:500px;height:500px;background:#7B2FFF;bottom:-200px;right:-200px;animation:float2 10s ease-in-out infinite}
+.b3{width:300px;height:300px;background:var(--g);top:50%;left:50%;animation:float3 6s ease-in-out infinite}
+@keyframes float1{0%,100%{transform:translate(0,0)}50%{transform:translate(80px,60px)}}
+@keyframes float2{0%,100%{transform:translate(0,0)}50%{transform:translate(-60px,-80px)}}
+@keyframes float3{0%,100%{transform:translate(-50%,-50%)}50%{transform:translate(-40%,-60%)}}
+/* Layout */
+.wrap{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column}
+/* Nav */
+nav{display:flex;align-items:center;justify-content:space-between;padding:1.5rem 2rem;max-width:1400px;margin:0 auto;width:100%}
+.logo{font-family:'Playfair Display',serif;font-size:1.8rem;background:linear-gradient(135deg,var(--r),var(--r2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-badge{display:flex;gap:.5rem}
+.nb{background:rgba(255,255,255,.08);border:1px solid var(--bd);padding:.3rem .8rem;border-radius:100px;font-size:.78rem;color:var(--txt)}
+/* Hero */
+.hero{flex:1;display:flex;align-items:center;justify-content:center;padding:2rem;gap:4rem;max-width:1400px;margin:0 auto;width:100%;flex-wrap:wrap}
+.hero-left{flex:1;min-width:280px;max-width:560px}
+.hero-tag{display:inline-flex;align-items:center;gap:.6rem;background:rgba(233,30,140,.12);border:1px solid rgba(233,30,140,.3);padding:.4rem 1rem;border-radius:100px;font-size:.82rem;color:var(--r2);margin-bottom:1.5rem}
+.hero-tag span{animation:blink 1s infinite}
+.h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,3.8rem);line-height:1.15;margin-bottom:1.2rem}
+.h1 em{font-style:italic;color:var(--r2)}
+.hero-desc{color:var(--txt);font-size:1.05rem;line-height:1.7;margin-bottom:2rem}
+.features{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:2rem}
+.feat{display:flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.06);border:1px solid var(--bd);padding:.4rem .8rem;border-radius:8px;font-size:.82rem}
+/* Auth Card */
+.hero-right{width:100%;max-width:420px}
+.auth-card{background:rgba(255,255,255,.04);backdrop-filter:blur(24px);border:1px solid var(--bd);border-radius:24px;padding:2rem;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.tabs{display:flex;background:rgba(255,255,255,.05);border-radius:12px;padding:4px;margin-bottom:1.5rem;gap:4px}
+.tab{flex:1;padding:.65rem;text-align:center;cursor:pointer;border-radius:9px;font-size:.9rem;transition:all .2s;color:var(--txt);font-weight:500}
+.tab.active{background:linear-gradient(135deg,var(--r),var(--r2));color:#fff}
+.form-group{margin-bottom:.9rem}
+.form-group label{display:block;font-size:.76rem;color:var(--txt);margin-bottom:.35rem;text-transform:uppercase;letter-spacing:1px}
+.form-group input,.form-group select{width:100%;background:rgba(255,255,255,.06);border:1px solid var(--bd);border-radius:10px;padding:.75rem 1rem;color:#fff;font-size:.92rem;font-family:'Outfit',sans-serif;outline:none;transition:border-color .2s}
+.form-group input:focus,.form-group select:focus{border-color:var(--r)}
+.form-group select option{background:#1A1135}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.btn{width:100%;padding:1rem;border-radius:12px;border:none;cursor:pointer;font-family:'Outfit',sans-serif;font-size:1rem;font-weight:600;background:linear-gradient(135deg,var(--r),var(--r2));color:#fff;transition:transform .2s,box-shadow .2s;margin-top:.3rem}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(233,30,140,.4)}
+.err{background:rgba(233,30,140,.12);border:1px solid rgba(233,30,140,.3);border-radius:8px;padding:.7rem 1rem;font-size:.84rem;color:#ff8ac4;margin-bottom:.8rem;display:none}
+.hidden{display:none!important}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+/* Responsive */
+@media(max-width:768px){
+  nav{padding:1rem 1.2rem}
+  .hero{flex-direction:column;gap:2rem;padding:1.2rem}
+  .hero-left{max-width:100%}
+  .hero-right{max-width:100%}
+  .h1{font-size:2.2rem}
+}
+</style>
+</head>
+<body>
+<div class="bg">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+</div>
+<div class="wrap">
+  <nav>
+    <div class="logo">💗 HeartSafe</div>
+    <div class="nav-badge">
+      <div class="nb">🤖 50 AI Profiles</div>
+      <div class="nb">🛡️ Safety First</div>
+    </div>
+  </nav>
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-tag"><span>●</span> 50 AI Profiles Active Now</div>
+      <h1 class="h1">Date Fearlessly,<br><em>Stay Protected</em></h1>
+      <p class="hero-desc">India's first dating app with built-in female safety — real-time SOS alerts, live GPS tracking to Telegram, and AI companions to keep you company.</p>
+      <div class="features">
+        <div class="feat">🆘 SOS Alerts</div>
+        <div class="feat">📍 Live GPS → Telegram</div>
+        <div class="feat">🤖 50 AI Bots</div>
+        <div class="feat">🗺️ Nearby Map</div>
+        <div class="feat">📱 Multi-Channel</div>
+        <div class="feat">🔴 Live Streaming</div>
+        <div class="feat">📸 Stories</div>
+        <div class="feat">🛡️ Block & Report</div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="auth-card">
+        <div class="tabs">
+          <div class="tab active" onclick="showTab('login')">Sign In</div>
+          <div class="tab" onclick="showTab('reg')">Create Account</div>
+        </div>
+        <!-- Login -->
+        <div id="loginForm">
+          <div class="err" id="loginErr"></div>
+          <div class="form-group"><label>Email or Username</label><input id="lId" placeholder="your@email.com" autocomplete="username"></div>
+          <div class="form-group"><label>Password</label><input id="lPw" type="password" placeholder="••••••••" autocomplete="current-password"></div>
+          <button class="btn" onclick="doLogin()">Sign In →</button>
+        </div>
+        <!-- Register -->
+        <div id="regForm" class="hidden">
+          <div class="err" id="regErr"></div>
+          <div class="row2">
+            <div class="form-group"><label>Full Name</label><input id="rName" placeholder="Your name"></div>
+            <div class="form-group"><label>Age</label><input id="rAge" type="number" min="18" max="80" placeholder="24"></div>
+          </div>
+          <div class="form-group"><label>Username</label><input id="rUser" placeholder="username"></div>
+          <div class="form-group"><label>Email</label><input id="rEmail" type="email" placeholder="your@email.com"></div>
+          <div class="form-group"><label>Password</label><input id="rPw" type="password" placeholder="Min 6 characters"></div>
+          <div class="row2">
+            <div class="form-group"><label>I am</label>
+              <select id="rGender"><option value="female">Woman</option><option value="male">Man</option><option value="nonbinary">Non-binary</option></select>
+            </div>
+            <div class="form-group"><label>Looking for</label>
+              <select id="rLook"><option value="male">Men</option><option value="female">Women</option><option value="both">Everyone</option></select>
+            </div>
+          </div>
+          <button class="btn" onclick="doRegister()">Create Account →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+function showTab(t){
+  document.querySelectorAll('.tab').forEach((el,i)=>el.classList.toggle('active',(t==='login'&&i===0)||(t==='reg'&&i===1)));
+  document.getElementById('loginForm').classList.toggle('hidden',t!=='login');
+  document.getElementById('regForm').classList.toggle('hidden',t!=='reg');
+}
+function err(id,msg){const e=document.getElementById(id);e.textContent=msg;e.style.display='block';setTimeout(()=>e.style.display='none',4000)}
+async function doLogin(){
+  const id=document.getElementById('lId').value,pw=document.getElementById('lPw').value;
+  if(!id||!pw)return err('loginErr','Please fill all fields');
+  const r=await fetch('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({identifier:id,password:pw})});
+  const d=await r.json();
+  if(d.success)location.href='/app';else err('loginErr',d.error||'Login failed');
+}
+async function doRegister(){
+  const b={name:document.getElementById('rName').value,age:parseInt(document.getElementById('rAge').value)||18,username:document.getElementById('rUser').value,email:document.getElementById('rEmail').value,password:document.getElementById('rPw').value,gender:document.getElementById('rGender').value,looking_for:document.getElementById('rLook').value};
+  if(!b.name||!b.username||!b.email||!b.password)return err('regErr','Please fill all fields');
+  if(b.password.length<6)return err('regErr','Password must be 6+ characters');
+  const r=await fetch('/api/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b)});
+  const d=await r.json();
+  if(d.success)location.href='/app';else err('regErr',d.error||'Registration failed');
+}
+document.addEventListener('keydown',e=>{if(e.key==='Enter'){document.getElementById('loginForm').classList.contains('hidden')?doRegister():doLogin()}});
+</script>
+</body>
+</html>
